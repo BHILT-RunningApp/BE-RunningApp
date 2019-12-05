@@ -1,7 +1,7 @@
 const { pollutionPointsData } = require("../db/data/development-data/index.js");
 const {
   PollutionPointsModel
-} = require("../models/mongoosePollutionPointsModel.js");
+} = require("../db/schemas/mongoosePollutionPointsModel.js/index.js.js");
 
 //Format pollution points data so that the aqi scores are calculated, add as a util function
 
