@@ -1,19 +1,21 @@
 const { usersData } = require("../db/data/development-data/index.js");
 const { UserModel } = require("../db/schemas/mongooseUserModel.js");
 const { fetchUsers } = require("../models/usersModel.js")
+const mongoose = require('mongoose')
 
-// const userController = (req, res) => {
-//   console.log("Inside User Controller ...");
-//   res.send('API')
-// };
 
 const seedUsers = (req, res) => {
-  console.log("USERSDATA ->", usersData);
+  mongoose.connection.dropCollection('users', (err, result) => {
+    if (err) {
+      console.log("error delete collection");
+    }
+  })
   usersData.forEach(user => {
     const newUser = new UserModel(user);
     newUser.save();
   });
   console.log("Seeded Users");
+  res.send('seeded users!')
 };
 
 

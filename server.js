@@ -4,9 +4,8 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 8080;
 const mongoose = require("mongoose");
-
-
 const { seedPollutionPoints } = require('./controllers/pollutionPointsController')
+const { seedUsers } = require('./controllers/userController')
 
 
 const apiRouter = require("./routes/apiRouter");
@@ -25,6 +24,7 @@ app.listen(port, () => {
 
 
 app.get('/seed-pollution-points', seedPollutionPoints)
+app.get('/seed-users', seedUsers)
 
 
 
