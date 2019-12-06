@@ -173,13 +173,13 @@ aqiCalculate = pollutants => {
   return pollutants;
 };
 
-seedPollutionPoints = (req, res) => {
-  pollutionPointsData.forEach(pollutionPoint => {
-    const newPollutionPoint = new PollutionPointsModel(pollutionPoint);
-    newPollutionPoint.save();
-  });
+// seedPollutionPoints = (req, res) => {
+//   pollutionPointsData.forEach(pollutionPoint => {
+//     const newPollutionPoint = new PollutionPointsModel(pollutionPoint);
+//     newPollutionPoint.save();
+//   });
 
-  res.send("Seeded Pollution Points");
-};
+//   res.send("Seeded Pollution Points");
+// };
 
-module.exports = { aqiCalculate, seedPollutionPoints };
+module.exports = { aqiCalculate };
