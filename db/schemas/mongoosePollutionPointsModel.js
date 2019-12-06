@@ -67,4 +67,4 @@ const PollutionPointsModel = mongoose.model(
   pollutionPointsSchema
 );
 
-exports.PollutionPointsModel = PollutionPointsModel;
+module.exports = { PollutionPointsModel };

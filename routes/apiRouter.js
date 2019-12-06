@@ -1,14 +1,13 @@
 const express = require("express");
 const apiRouter = express.Router();
 const usersRouter = require('./usersRouter')
+const pollutionPointsRouter = require('./pollutionPointsRouter')
 
-const {
-  seedPollutionPoints
-} = require("../controllers/pollutionPointsController.js");
+
 
 
 apiRouter.use("/users", usersRouter);
+apiRouter.use('/pollution-points', pollutionPointsRouter)
 
-apiRouter.get("/pollution-points", seedPollutionPoints);
 
 module.exports = apiRouter;
