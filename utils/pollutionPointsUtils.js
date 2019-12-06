@@ -172,14 +172,48 @@ aqiCalculate = pollutants => {
   });
   return pollutants;
 };
+calcLatLong = pollutants => {
+  pollutants.forEach(station => {
+    station.am.top_corner.lat = Number(
+      (Number(station.pp_coordinates.lat) - 0.006).toFixed(6)
+    );
+    station.am.top_corner.long = Number(
+      (Number(station.pp_coordinates.long) - 0.002).toFixed(6)
+    );
+    station.am.bottom_corner.lat = Number(
+      (Number(station.pp_coordinates.lat) + 0.006).toFixed(6)
+    );
+    station.am.bottom_corner.long = Number(
+      (Number(station.pp_coordinates.long) + 0.002).toFixed(6)
+    );
 
-// seedPollutionPoints = (req, res) => {
-//   pollutionPointsData.forEach(pollutionPoint => {
-//     const newPollutionPoint = new PollutionPointsModel(pollutionPoint);
-//     newPollutionPoint.save();
-//   });
+    station.midday.top_corner.lat = Number(
+      (Number(station.pp_coordinates.lat) - 0.006).toFixed(6)
+    );
+    station.midday.top_corner.long = Number(
+      (Number(station.pp_coordinates.long) - 0.002).toFixed(6)
+    );
+    station.midday.bottom_corner.lat = Number(
+      (Number(station.pp_coordinates.lat) + 0.006).toFixed(6)
+    );
+    station.midday.bottom_corner.long = Number(
+      (Number(station.pp_coordinates.long) + 0.002).toFixed(6)
+    );
 
-//   res.send("Seeded Pollution Points");
-// };
+    station.pm.top_corner.lat = Number(
+      (Number(station.pp_coordinates.lat) - 0.006).toFixed(6)
+    );
+    station.pm.top_corner.long = Number(
+      (Number(station.pp_coordinates.long) - 0.002).toFixed(6)
+    );
+    station.pm.bottom_corner.lat = Number(
+      (Number(station.pp_coordinates.lat) + 0.006).toFixed(6)
+    );
+    station.pm.bottom_corner.long = Number(
+      (Number(station.pp_coordinates.long) + 0.002).toFixed(6)
+    );
+  });
+  return pollutants;
+};
+module.exports = { aqiCalculate, calcLatLong };
 
-module.exports = { aqiCalculate };

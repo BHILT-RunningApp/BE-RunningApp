@@ -4,12 +4,17 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 8080;
 const mongoose = require("mongoose");
-const apiRouter = require('./routes/apiRouter')
+
+
 const { seedPollutionPoints } = require('./controllers/pollutionPointsController')
 
+
+const apiRouter = require("./routes/apiRouter");
+
+
 app.use(require("./routes/apiRouter.js"));
-app.use(express.json())
-app.use('/api', apiRouter)
+app.use(express.json());
+app.use("/api", apiRouter);
 
 mongoose.connect(process.env.DB_URI, { useNewUrlParser: true });
 
@@ -18,6 +23,10 @@ app.listen(port, () => {
 });
 
 
+
 app.get('/seed-pollution-points', seedPollutionPoints)
 
-module.exports = { app }
+
+
+
+module.exports = { app };
