@@ -8,7 +8,6 @@ const { aqiCalculate } = require("../utils/pollutionPointsUtils.js");
 //Get seedPollutionPoints to run on server start
 
 const seedPollutionPoints = (req, res) => {
-  aqiCalculate(pollutionPointsData);
   pollutionPointsData.forEach(pollutionPoint => {
     const newPollutionPoint = new PollutionPointsModel(pollutionPoint);
     newPollutionPoint.save();
