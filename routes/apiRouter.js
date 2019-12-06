@@ -11,4 +11,4 @@ apiRouter.use("/users", usersRouter);
 
 apiRouter.get("/pollution-points", seedPollutionPoints);
 
-module.exports = router;
+module.exports = apiRouter;

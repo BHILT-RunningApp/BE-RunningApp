@@ -15,3 +15,5 @@ mongoose.connect(process.env.DB_URI, { useNewUrlParser: true });
 app.listen(port, () => {
   console.log(`App Listening on ${port}`);
 });
+
+module.exports = { app }
