@@ -1,17 +1,24 @@
-const { pollutionPointsData } = require('../db/data/development-data/index.js')
-const { PollutionPointsModel } = require("../db/schemas/mongoosePollutionPointsModel.js");
-const { fetchPollutionPoints } = require('../models/pollutionPointsModel.js')
-const { aqiCalculate } = require('../utils/pollutionPointsUtils.js')
-const mongoose = require('mongoose')
+const { pollutionPointsData } = require("../db/data/development-data/index.js");
+const {
+  PollutionPointsModel
+} = require("../db/schemas/mongoosePollutionPointsModel.js");
+const { fetchPollutionPoints } = require("../models/pollutionPointsModel.js");
+const {
+  aqiCalculate,
+  calcLatLong
+} = require("../utils/pollutionPointsUtils.js");
+const mongoose = require("mongoose");
 
 const seedPollutionPoints = (req, res) => {
-  mongoose.connection.dropCollection('pollutionpoints', (err, result) => {
+  mongoose.connection.dropCollection("pollutionpoints", (err, result) => {
     if (err) {
       console.log("error delete collection");
     }
-  })
+  });
   const updatedPollutionPointsData = aqiCalculate(pollutionPointsData);
-  updatedPollutionPointsData.forEach(pollutionPoint => {
+  const pollutionPointsWithCoords = calcLatLong(updatedPollutionPointsData);
+
+  pollutionPointsWithCoords.forEach(pollutionPoint => {
     const newPollutionPoint = new PollutionPointsModel(pollutionPoint);
     newPollutionPoint.save();
   });
@@ -19,12 +26,11 @@ const seedPollutionPoints = (req, res) => {
 };
 
 const getPollutionPoints = (req, res, next) => {
-  fetchPollutionPoints().then(pollutionPoints => {
-    res.status(200).json({ pollutionPoints })
-  }).catch(next)
-}
+  fetchPollutionPoints()
+    .then(pollutionPoints => {
+      res.status(200).json({ pollutionPoints });
+    })
+    .catch(next);
+};
 
 module.exports = { seedPollutionPoints, getPollutionPoints };
-
-
-
