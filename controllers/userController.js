@@ -1,6 +1,6 @@
 const { usersData } = require("../db/data/development-data/index.js");
 const { UserModel } = require("../db/schemas/mongooseUserModel.js");
-const { fetchUsers, postUser } = require("../models/usersModel.js")
+const { fetchUsers, postUser, patchUser } = require("../models/usersModel.js")
 const mongoose = require('mongoose')
 
 
@@ -32,4 +32,11 @@ const addUser = (req, res, next) => {
   }).catch(next)
 }
 
-module.exports = { seedUsers, getAllUsers, addUser };
+const updateUser = (req, res, next) => {
+  const update = req.body;
+  patchUser(update).then(user => {
+    res.status(200).json({ user })
+  }).catch(next)
+}
+
+module.exports = { seedUsers, getAllUsers, addUser, updateUser };

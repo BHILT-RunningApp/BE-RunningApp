@@ -15,6 +15,23 @@ const postUser = (newUser) => {
     })
 }
 
+// const patchUser = update => {
+//     const { username, current_location } = update
+//     return UserModel.updateOne({ username }, { current_location }, (err, docs) => {
+//         if (err) console.log(err)
+//         return docs
+//     })
+// }
+
+const patchUser = update => {
+    const { username, current_location } = update
+    return UserModel.findOneAndUpdate({ username }, { current_location }, { "new": true })
+        .then(docs => {
+            return docs;
+        })
+}
 
 
-module.exports = { fetchUsers, postUser }
+
+
+module.exports = { fetchUsers, postUser, patchUser }
