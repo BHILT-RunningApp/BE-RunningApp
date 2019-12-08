@@ -8,4 +8,13 @@ const fetchUsers = () => {
     })
 }
 
-module.exports = { fetchUsers }
+const postUser = (newUser) => {
+    const userToAdd = new UserModel(newUser)
+    return userToAdd.save().then(newUser => {
+        return newUser
+    })
+}
+
+
+
+module.exports = { fetchUsers, postUser }

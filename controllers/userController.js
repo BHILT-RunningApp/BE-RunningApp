@@ -1,6 +1,6 @@
 const { usersData } = require("../db/data/development-data/index.js");
 const { UserModel } = require("../db/schemas/mongooseUserModel.js");
-const { fetchUsers } = require("../models/usersModel.js")
+const { fetchUsers, postUser } = require("../models/usersModel.js")
 const mongoose = require('mongoose')
 
 
@@ -25,6 +25,12 @@ const getAllUsers = (req, res, next) => {
   }).catch(next)
 }
 
+const addUser = (req, res, next) => {
+  const newUser = req.body;
+  // console.log('before the controller', newUser)
+  postUser(newUser).then(user => {
+    res.status(201).json({ user })
+  }).catch(next)
+}
 
-
-module.exports = { seedUsers, getAllUsers };
+module.exports = { seedUsers, getAllUsers, addUser };
