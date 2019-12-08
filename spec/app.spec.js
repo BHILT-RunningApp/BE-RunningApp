@@ -72,7 +72,6 @@ describe('/users POST', () => {
             })
             .expect(201)
             .then(({ body }) => {
-                console.log(body)
                 expect(body).to.be.an('object');
                 expect(body.user).to.have.keys('username', 'email', 'password', 'current_location', '_id', '__v');
             })

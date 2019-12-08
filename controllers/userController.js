@@ -27,7 +27,6 @@ const getAllUsers = (req, res, next) => {
 
 const addUser = (req, res, next) => {
   const newUser = req.body;
-  // console.log('before the controller', newUser)
   postUser(newUser).then(user => {
     res.status(201).json({ user })
   }).catch(next)
