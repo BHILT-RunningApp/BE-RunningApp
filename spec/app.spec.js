@@ -33,7 +33,7 @@ describe('/users', () => {
             })
     });
 });
-describe.only('/pollution-points', () => {
+describe('/pollution-points', () => {
     it('returns an object', () => {
         return request(app)
             .get('/api/pollution-points')
@@ -55,9 +55,7 @@ describe.only('/pollution-points', () => {
             .get('/api/pollution-points')
             .expect(200)
             .then(({ body }) => {
-                console.log(body)
-                expect(body.pollutionPoints[0]).to.have.keys('pp_coordinates', 'pm', 'name', 'midday', 'id', 'am', '_id', '__v')
-                ç
+                expect(body.pollutionPoints[0]).to.have.keys('pp_coordinates', 'pm', 'name', 'midday', 'id', 'am', '_id')
             })
     });
 });
