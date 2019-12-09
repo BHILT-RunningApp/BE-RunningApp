@@ -16,7 +16,6 @@ aqiCalculate = pollutants => {
   let aqiArr = [];
 
   pollutants.forEach(station => {
-
     for (let i = aqiData.O3.length - 1; i >= 0; i--) {
       if (station.am.pollutants.o3 <= aqiData.O3[i]) {
         o3Index = i + 1;
@@ -171,47 +170,85 @@ aqiCalculate = pollutants => {
   return pollutants;
 };
 calcLatLong = pollutants => {
+  //Add scaling facgtor to remaining
+  const scalingFactor = 1.25;
+
   pollutants.forEach(station => {
     station.am.top_corner.lat = Number(
-      (Number(station.pp_coordinates.lat) - 0.006).toFixed(6)
+      (
+        Number(station.pp_coordinates.lat) -
+        0.006 * scalingFactor * station.am.aqi
+      ).toFixed(6)
     );
     station.am.top_corner.long = Number(
-      (Number(station.pp_coordinates.long) - 0.002).toFixed(6)
+      (
+        Number(station.pp_coordinates.long) -
+        0.002 * scalingFactor * station.am.aqi
+      ).toFixed(6)
     );
     station.am.bottom_corner.lat = Number(
-      (Number(station.pp_coordinates.lat) + 0.006).toFixed(6)
+      (
+        Number(station.pp_coordinates.lat) +
+        0.006 * scalingFactor * station.am.aqi
+      ).toFixed(6)
     );
     station.am.bottom_corner.long = Number(
-      (Number(station.pp_coordinates.long) + 0.002).toFixed(6)
+      (
+        Number(station.pp_coordinates.long) +
+        0.002 * scalingFactor * station.am.aqi
+      ).toFixed(6)
     );
 
     station.midday.top_corner.lat = Number(
-      (Number(station.pp_coordinates.lat) - 0.006).toFixed(6)
+      (
+        Number(station.pp_coordinates.lat) -
+        0.006 * scalingFactor * station.midday.aqi
+      ).toFixed(6)
     );
     station.midday.top_corner.long = Number(
-      (Number(station.pp_coordinates.long) - 0.002).toFixed(6)
+      (
+        Number(station.pp_coordinates.long) -
+        0.002 * scalingFactor * station.midday.aqi
+      ).toFixed(6)
     );
     station.midday.bottom_corner.lat = Number(
-      (Number(station.pp_coordinates.lat) + 0.006).toFixed(6)
+      (
+        Number(station.pp_coordinates.lat) +
+        0.006 * scalingFactor * station.midday.aqi
+      ).toFixed(6)
     );
     station.midday.bottom_corner.long = Number(
-      (Number(station.pp_coordinates.long) + 0.002).toFixed(6)
+      (
+        Number(station.pp_coordinates.long) +
+        0.002 * scalingFactor * station.midday.aqi
+      ).toFixed(6)
     );
 
     station.pm.top_corner.lat = Number(
-      (Number(station.pp_coordinates.lat) - 0.006).toFixed(6)
+      (
+        Number(station.pp_coordinates.lat) -
+        0.006 * scalingFactor * station.pm.aqi
+      ).toFixed(6)
     );
     station.pm.top_corner.long = Number(
-      (Number(station.pp_coordinates.long) - 0.002).toFixed(6)
+      (
+        Number(station.pp_coordinates.long) -
+        0.002 * scalingFactor * station.pm.aqi
+      ).toFixed(6)
     );
     station.pm.bottom_corner.lat = Number(
-      (Number(station.pp_coordinates.lat) + 0.006).toFixed(6)
+      (
+        Number(station.pp_coordinates.lat) +
+        0.006 * scalingFactor * station.pm.aqi
+      ).toFixed(6)
     );
     station.pm.bottom_corner.long = Number(
-      (Number(station.pp_coordinates.long) + 0.002).toFixed(6)
+      (
+        Number(station.pp_coordinates.long) +
+        0.002 * scalingFactor * station.pm.aqi
+      ).toFixed(6)
     );
   });
   return pollutants;
 };
 module.exports = { aqiCalculate, calcLatLong };
-
