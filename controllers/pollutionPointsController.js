@@ -1,5 +1,5 @@
 
-const { fetchPollutionPoints } = require("../models/pollutionPointsModel.js");
+const { fetchPollutionPoints, fetchOnePollutionPoint } = require("../models/pollutionPointsModel.js");
 
 
 const getPollutionPoints = (req, res, next) => {
@@ -10,4 +10,11 @@ const getPollutionPoints = (req, res, next) => {
     .catch(next);
 };
 
-module.exports = { getPollutionPoints };
+const getOnePollutionPoint = (req, res, next) => {
+  const { id } = req.params
+  fetchOnePollutionPoint(id).then(pollutionPoint => {
+    res.status(200).json({ pollutionPoint })
+  })
+}
+
+module.exports = { getPollutionPoints, getOnePollutionPoint };

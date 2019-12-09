@@ -7,4 +7,11 @@ const fetchPollutionPoints = () => {
     })
 }
 
-module.exports = { fetchPollutionPoints }
+const fetchOnePollutionPoint = (_id) => {
+    return PollutionPointsModel.findById(_id, (err, docs) => {
+        if (err) console.log(err);
+        return docs
+    })
+}
+
+module.exports = { fetchPollutionPoints, fetchOnePollutionPoint }

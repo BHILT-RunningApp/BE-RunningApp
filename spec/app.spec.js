@@ -37,7 +37,6 @@ describe('/pollution-points', () => {
             .get('/api/pollution-points')
             .expect(200)
             .then(({ body }) => {
-                console.log(body.pollutionPoints[0].am.top_corner)
                 expect(body).to.be.an('object')
             })
     });
@@ -84,6 +83,17 @@ describe('/users PATCH', () => {
             .expect(200)
             .then(({ body }) => {
                 expect(body.user).to.have.keys('_id', 'username', 'email', "password", "current_location")
+            })
+    });
+});
+describe('/pollution-point/:PP_id GET', () => {
+    it('gets one pollution point ', () => {
+        return request(app)
+            .get('/api/pollution-points/5dee7aee1f5e2e303b42954b')
+            .expect(200)
+            .then(({ body }) => {
+                expect(body.pollutionPoint).to.be.an('object')
+                expect(body.pollutionPoint.name).to.eql('Science Museum (Liverpool Road)')
             })
     });
 });
