@@ -1,22 +1,22 @@
-const { usersData } = require("../db/data/development-data/index.js");
-const { UserModel } = require("../db/schemas/mongooseUserModel.js");
+// const { usersData } = require("../db/data/development-data/index.js");
+// const { UserModel } = require("../db/schemas/mongooseUserModel.js");
 const { fetchUsers, postUser, patchUser } = require("../models/usersModel.js")
-const mongoose = require('mongoose')
+// const mongoose = require('mongoose')
 
 
-const seedUsers = (req, res) => {
-  mongoose.connection.dropCollection('users', (err, result) => {
-    if (err) {
-      console.log("error delete collection");
-    }
-  })
-  usersData.forEach(user => {
-    const newUser = new UserModel(user);
-    newUser.save();
-  });
-  console.log("Seeded Users");
-  res.send('seeded users!')
-};
+// const seedUsers = (req, res) => {
+//   mongoose.connection.dropCollection('users', (err, result) => {
+//     if (err) {
+//       console.log("error delete collection");
+//     }
+//   })
+//   usersData.forEach(user => {
+//     const newUser = new UserModel(user);
+//     newUser.save();
+//   });
+//   console.log("Seeded Users");
+//   res.send('seeded users!')
+// };
 
 
 const getAllUsers = (req, res, next) => {
@@ -39,4 +39,4 @@ const updateUser = (req, res, next) => {
   }).catch(next)
 }
 
-module.exports = { seedUsers, getAllUsers, addUser, updateUser };
+module.exports = { getAllUsers, addUser, updateUser };

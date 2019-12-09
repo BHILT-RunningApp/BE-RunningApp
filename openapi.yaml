@@ -1,0 +1,43 @@
+swagger: "2.0"
+info:
+  description: "API for APP project."
+  title: "project-bhilt"
+  version: "1.0.0"
+host: "project-bhilt.appspot.com/"
+schemes: 
+    - "https"
+paths: 
+    "/pollution-points":
+        get:
+            description: "gets the pollution points"
+            operationId: "pollution-points"
+            responses: 
+                200:
+                    description: "success"
+                400:
+                    description: "error "
+    "/users":
+        get:
+            description: "gets the users"
+            operationId: "users"
+            responses: 
+                200:
+                    description: "success"
+                400:
+                    description: "error "
+        patch:
+            description: "updates the user"
+            operationId: "user"
+            responses: 
+                200:
+                    description: "success"
+                400:
+                    description: "error "
+        post: 
+            description: "adds new users"
+            operationId: "user"
+            responses: 
+                201:
+                    description: "success"
+                400:
+                    description: "error "

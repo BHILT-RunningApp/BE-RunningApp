@@ -16,9 +16,7 @@ aqiCalculate = pollutants => {
   let aqiArr = [];
 
   pollutants.forEach(station => {
-    // console.log("----------------------------------");
-    // console.log(station.name);
-    // console.log("----------------------------------");
+
     for (let i = aqiData.O3.length - 1; i >= 0; i--) {
       if (station.am.pollutants.o3 <= aqiData.O3[i]) {
         o3Index = i + 1;

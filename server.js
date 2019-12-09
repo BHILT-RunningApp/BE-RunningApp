@@ -4,8 +4,8 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 8080;
 const mongoose = require("mongoose");
-const { seedPollutionPoints } = require('./controllers/pollutionPointsController')
-const { seedUsers } = require('./controllers/userController')
+const { seedPollutionPoints, seedUsers } = require('./seed-atlas.js')
+
 
 
 const apiRouter = require("./routes/apiRouter");
@@ -20,13 +20,5 @@ mongoose.connect(process.env.DB_URI, { useNewUrlParser: true });
 app.listen(port, () => {
   console.log(`App Listening on ${port}`);
 });
-
-
-
-app.get('/seed-pollution-points', seedPollutionPoints)
-app.get('/seed-users', seedUsers)
-
-
-
 
 module.exports = { app };
