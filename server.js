@@ -1,5 +1,5 @@
 require("dotenv").config();
-const DB_URI = "mongodb://localhost:27017/project-bhilt";
+const DB_URI = "mongodb+srv://project-bhilt:Northcoders@project-bhilt-ze2oc.gcp.mongodb.net/project-bhilt?retryWrites=true&w=majority";
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 8080;
