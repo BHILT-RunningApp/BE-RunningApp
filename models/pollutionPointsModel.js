@@ -9,6 +9,7 @@ const fetchPollutionPoints = () => {
   });
 };
 
+
 const geoJSONPollutionPoints = pollutionPoints => {
   return pollutionPoints.map(pollutionPoint => {
     const rObj = {};
@@ -25,4 +26,14 @@ const geoJSONPollutionPoints = pollutionPoints => {
   });
 };
 
-module.exports = { fetchPollutionPoints, geoJSONPollutionPoints };
+const fetchOnePollutionPoint = (_id) => {
+    return PollutionPointsModel.findById(_id, (err, docs) => {
+        if (err) console.log(err);
+        return docs
+    })
+}
+
+module.exports = { fetchPollutionPoints, geoJSONPollutionPoints, fetchOnePollutionPoint };
+
+
+
