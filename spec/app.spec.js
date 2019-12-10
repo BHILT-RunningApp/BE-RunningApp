@@ -58,7 +58,7 @@ describe('/pollution-points', () => {
     });
 });
 describe('/users POST', () => {
-    it('returns an object with the new user', () => {
+    it.only('returns an object with the new user', () => {
         const randomName = faker.name.findName();
         return request(app)
             .post('/api/users')
@@ -67,16 +67,21 @@ describe('/users POST', () => {
                 email: 'user@gmail.com',
                 password: 'dsfdfdfdfdfd',
                 current_location: '53.4860211, -2.2397307',
+                end_location: {
+                    lat: 0,
+                    long: 0
+                }
             })
             .expect(201)
             .then(({ body }) => {
+                console.log(body)
                 expect(body).to.be.an('object');
-                expect(body.user).to.have.keys('username', 'email', 'password', 'current_location', '_id', '__v');
+                expect(body.user).to.have.keys('username', 'email', 'password', 'current_location', '_id', '__v', 'end_location');
             })
     });
 });
 describe('/users PATCH', () => {
-    it.only('updates the users geo-location', () => {
+    it('updates the users geo-location', () => {
         return request(app)
             .patch('/api/users')
             .send({
