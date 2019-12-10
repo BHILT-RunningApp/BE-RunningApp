@@ -16,8 +16,8 @@ const postUser = (newUser) => {
 }
 
 const patchUser = update => {
-    const { username, current_location } = update
-    return UserModel.findOneAndUpdate({ username }, { current_location }, { "new": true })
+    const { username, current_location, end_location } = update
+    return UserModel.findOneAndUpdate({ username }, { current_location, end_location }, { "new": true })
         .then(docs => {
             return docs;
         })

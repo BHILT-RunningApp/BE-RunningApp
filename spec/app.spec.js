@@ -76,13 +76,17 @@ describe('/users POST', () => {
     });
 });
 describe('/users PATCH', () => {
-    it('updates the users geo-location', () => {
+    it.only('updates the users geo-location', () => {
         return request(app)
             .patch('/api/users')
-            .send({ username: 'harry', current_location: '11111, 678811111190' })
+            .send({
+                username: 'harry', current_location: '53.4860211, -2.2397307', end_location: {
+                    lat: 69, long: 69
+                }
+            })
             .expect(200)
             .then(({ body }) => {
-                expect(body.user).to.have.keys('_id', 'username', 'email', "password", "current_location")
+                expect(body.user).to.have.keys('_id', 'username', 'email', "password", "current_location", 'end_location')
             })
     });
 });
