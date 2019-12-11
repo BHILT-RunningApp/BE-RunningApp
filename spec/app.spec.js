@@ -176,4 +176,14 @@ describe('/pollution-point/:PP_id GET', () => {
       })
   });
 });
-
+describe('error handling', () => {
+  it.only('ERROR DELETE /users not allowed ', () => {
+    return request(app)
+      .delete('/api/users')
+      .expect(405)
+      .then(({ body }) => {
+        console.log(body)
+        expect(body).to.eql({ msg: 'DELETE method not allowed on this endpoint.' })
+      })
+  });
+});
