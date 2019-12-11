@@ -5,7 +5,13 @@ const methodNotAllowed = (req, res, next) => {
 
 const customErrors = (err, req, res, next) => {
     console.log('gets here!')
-    res.status(err.status).json(err)
+    if (err.status) {
+        res.status(err.status).json(err)
+    } else next(err)
+}
+
+const allOtherErrors = (err, req, res, next) => {
+    res.status(500).json({ msg: 'server error. Something has gone very wrong' })
 }
 
 module.exports = { methodNotAllowed }
