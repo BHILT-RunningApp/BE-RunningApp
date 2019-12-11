@@ -37,7 +37,9 @@ describe('/users', () => {
   });
 });
 describe('/pollution-points', () => {
+
   it('returns an object', () => {
+
     return request(app)
       .get('/api/pollution-points')
       .expect(200)
@@ -89,8 +91,8 @@ describe('/pollution-points', () => {
       .get('/api/pollution-points')
       .expect(200)
       .then(({ body }) => {
-        expect(body).to.be.an('object')
-      })
+        expect(body).to.be.an('object');
+      });
   });
   it('returns an object with an array of pollution points', () => {
     return request(app)
@@ -108,7 +110,6 @@ describe('/pollution-points', () => {
         expect(body.geoJSONAndPollutionPoints.pollutionPoints[0]).to.have.keys('pp_coordinates', 'pm', 'name', 'midday', 'id', 'am', '_id')
       })
   });
-
 });
 describe('/users POST', () => {
   it('returns an object with the new user', () => {
