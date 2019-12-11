@@ -1,4 +1,3 @@
-
 const {
   fetchPollutionPoints,
   geoJSONPollutionPoints,
@@ -24,7 +23,7 @@ const getOnePollutionPoint = (req, res, next) => {
   const { id } = req.params
   fetchOnePollutionPoint(id).then(pollutionPoint => {
     res.status(200).json({ pollutionPoint })
-  })
+  }).catch(next)
 }
 
 module.exports = { getPollutionPoints, getOnePollutionPoint };
